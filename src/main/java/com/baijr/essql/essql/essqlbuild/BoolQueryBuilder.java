@@ -1,6 +1,6 @@
-package com.baijr.essql.essql.essqlbuild.express;
+package com.baijr.essql.essql.essqlbuild;
 
-import com.autohome.contentmain.common.elasticsearch.essql.essqlbuild.QueryBuilder;
+import com.baijr.essql.essql.essqlbuild.express.Express;
 
 /**
  * @author baijr

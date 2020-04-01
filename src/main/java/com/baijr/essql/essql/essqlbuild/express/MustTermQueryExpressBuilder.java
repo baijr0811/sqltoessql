@@ -1,12 +1,17 @@
 package com.baijr.essql.essql.essqlbuild.express;
 
-public class MustTermQueryExpressBuilder implements Express {
+public class MustTermQueryExpressBuilder extends ExpressBuilder {
 
-    String name;
-    String value;
+    public static Express terms(String name, String value) {
 
-    public MustTermQueryExpressBuilder(String name, String value) {
-        this.name = name;
-        this.value = value;
+        return new Builder();
+    }
+
+    public static Express term(String name, String value) {
+        return null;
+    }
+
+    public static Express should(String name, String value) {
+        return null;
     }
 }
