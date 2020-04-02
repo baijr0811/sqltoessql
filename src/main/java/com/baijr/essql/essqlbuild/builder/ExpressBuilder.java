@@ -11,7 +11,7 @@ import java.util.List;
  * @author  baijr
  * @date 2020-04-03
  */
-public class ExpressBuilder extends Query {
+public class ExpressBuilder extends BaseBuilder {
 
     private final List<Express> termList = new ArrayList<Express>();
 

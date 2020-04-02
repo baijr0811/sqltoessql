@@ -8,39 +8,39 @@ import java.util.List;
  * @author baijr
  * @date 2020-04-03
  */
-public class QueryBuilder extends Query {
+public class BaseBuilderBuilder extends BaseBuilder {
 
-    private final List<Query> boolList = new ArrayList<Query>();
-    private final List<Query> sortList = new ArrayList<Query>();
+    private final List<BaseBuilder> boolList = new ArrayList<BaseBuilder>();
+    private final List<BaseBuilder> sortList = new ArrayList<BaseBuilder>();
     private final List<String> fieldList = new ArrayList<String>();
     private int from = 0;
     private int to = 20;
 
-    public QueryBuilder(String queryKey) {
+    public BaseBuilderBuilder(String queryKey) {
         super(queryKey);
     }
 
-    public QueryBuilder Bool(BoolQueryBuiler builder) {
+    public BaseBuilderBuilder Bool(BoolBaseBuilderBuiler builder) {
         boolList.add(builder);
         return this;
     }
 
-    public QueryBuilder Sorts(SortBuilder sortBuilder) {
+    public BaseBuilderBuilder Sorts(SortBuilder sortBuilder) {
         sortList.add(sortBuilder);
         return this;
     }
 
-    public QueryBuilder From(int from) {
+    public BaseBuilderBuilder From(int from) {
         this.from = from;
         return this;
     }
 
-    public QueryBuilder To(int to) {
+    public BaseBuilderBuilder To(int to) {
         this.to = to;
         return this;
     }
 
-    public QueryBuilder Fields(String... fields) {
+    public BaseBuilderBuilder Fields(String... fields) {
         fieldList.addAll(Arrays.asList(fields));
         return this;
     }

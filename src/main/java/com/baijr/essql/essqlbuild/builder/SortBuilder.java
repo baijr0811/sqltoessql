@@ -10,7 +10,7 @@ import java.util.List;
  * @author baijr
  * @date 2020-04-03
  */
-public class SortBuilder extends Query {
+public class SortBuilder extends BaseBuilder {
 
     private final List<Sort> sorts = new ArrayList<Sort>();
 

@@ -1,17 +1,10 @@
 package com.baijr.essql.essqlbuild.builder;
 
 /**
- * @author  baijr
+ * @author baijr
  * @date 2020-04-03
  */
-public abstract class Query implements Search {
+public interface Query {
 
-    protected String queryKey;
-
-    protected Query(String queryKey) {
-        this.queryKey = queryKey;
-    }
-
-    @Override
-    public abstract String ESSQL();
+    String ESSQL();
 }
