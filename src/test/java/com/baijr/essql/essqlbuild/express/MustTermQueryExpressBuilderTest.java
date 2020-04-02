@@ -1,23 +1,29 @@
 package com.baijr.essql.essqlbuild.express;
 
 
-import com.baijr.essql.essqlbuild.Builder;
+import com.baijr.essql.essqlbuild.Utils.HBuilder;
+import com.baijr.essql.essqlbuild.Utils.HField;
+import com.baijr.essql.essqlbuild.Utils.HSort;
+import com.baijr.essql.essqlbuild.Utils.HWhere;
+
 
 class MustTermQueryExpressBuilderTest {
 
     public static void main(String[] args) {
-        Query query = Builder.Builder()
-                .Bool(Builder.AND
-                                (Builder.
-                                        Equal("and=", "0")
-                                        .In("andin", "1", "2", "3")
-                                        .Less("and<", "4")
-                                ).OR(Builder.
-                                Equal("or=", "5")
-                                .Then("or>", "6")
+        Query query = HBuilder.Builder()
+                .Bool(HWhere
+                        .AND(HField
+                                .Equal("a", "0")
+                                .In("b", "1", "2", "3")
+                                .Less("c", "4")
                         )
-                ).Sorts(Builder.ASC("asc").DESC("desc"))
+                        .OR(HField
+                                .Equal("d", "5")
+                                .Then("e", "6")
+                        )
+                )
+                .Sorts(HSort.ASC("asc").DESC("desc"))
                 .Fields("f", "x", "y", "z");
-        System.out.println(query.ESSQL());
+        System.out.println(query.toString());
     }
 }

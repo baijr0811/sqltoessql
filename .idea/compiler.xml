@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="sql2essql" target="6" />
+      <module name="sql2essql" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

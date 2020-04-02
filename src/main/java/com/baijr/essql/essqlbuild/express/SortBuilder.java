@@ -30,6 +30,6 @@ public class SortBuilder extends Query {
 
     @Override
     public String ESSQL() {
-        return null;
+        return sorts.toString();
     }
 }
