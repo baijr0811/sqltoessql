@@ -12,7 +12,7 @@ import com.baijr.essql.mysqlparse.SqlParser;
  */
 public class SqlParseES {
 
-    public static String Sql2ESSql(String sql) {
+    public static String ToESSql(String sql) {
         ParseModel parseModel = SqlParser.GetParesModel(sql);
         Query query = HBuilder.Builder();
 
