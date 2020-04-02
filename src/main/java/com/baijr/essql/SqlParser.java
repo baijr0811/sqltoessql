@@ -1,4 +1,4 @@
-package com.baijr.essql.essql;
+package com.baijr.essql;
 
 import net.sf.jsqlparser.expression.*;
 import net.sf.jsqlparser.expression.operators.arithmetic.*;

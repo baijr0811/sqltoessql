@@ -1,4 +1,4 @@
-package com.baijr.essql.essql;
+package com.baijr.essql;
 
 /**
  * @author baijr

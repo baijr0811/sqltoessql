@@ -1,4 +1,4 @@
-package com.baijr.essql.essql;
+package com.baijr.essql;
 
 import net.sf.jsqlparser.JSQLParserException;
 import net.sf.jsqlparser.parser.CCJSqlParserUtil;
