@@ -6,7 +6,10 @@ import com.baijr.essql.essqlbuild.utils.HField;
 import com.baijr.essql.essqlbuild.utils.HSort;
 import com.baijr.essql.essqlbuild.utils.HWhere;
 
-
+/**
+ * @author baijr
+ * @date 2020-04-01
+ */
 class MustTermQueryExpressBuilderTest {
 
     public static void main(String[] args) {
@@ -16,6 +19,8 @@ class MustTermQueryExpressBuilderTest {
                                 .Equal("a", "0")
                                 .In("b", "1", "2", "3")
                                 .Less("c", "4")
+                                .NotNULL("n")
+                                .NotNULL("l")
                         )
                         .OR(HField
                                 .Equal("d", "5")

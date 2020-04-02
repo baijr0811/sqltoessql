@@ -2,6 +2,7 @@ package com.baijr.essql.mysqlparse;
 
 
 import com.baijr.essql.essqlbuild.model.Express;
+import com.baijr.essql.mysqlparse.model.WhereListModel;
 import net.sf.jsqlparser.JSQLParserException;
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.parser.CCJSqlParserUtil;
@@ -10,6 +11,10 @@ import net.sf.jsqlparser.statement.select.*;
 
 import java.util.List;
 
+/**
+ * @author baijr
+ * @date 2020-04-01
+ */
 public class SqlParserTest {
 
     public static void main(String[] args) {
@@ -32,7 +37,7 @@ public class SqlParserTest {
             List<String> fileds = SqlParser.SelectField(plainSelect);
             Limit limit = SqlParser.SelectLimit(plainSelect);
             List<OrderByElement> orderByElements = SqlParser.SelectOrderby(plainSelect);
-            Expression expression = SqlParser.SelectWhere(plainSelect);
+            List<WhereListModel> whereListModels = SqlParser.SelectWhere(plainSelect);
             GroupByElement groupByElement = SqlParser.SelectGroupby(plainSelect);
         }
 

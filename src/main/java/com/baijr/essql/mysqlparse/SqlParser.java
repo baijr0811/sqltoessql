@@ -1,9 +1,10 @@
 package com.baijr.essql.mysqlparse;
 
-import com.baijr.essql.essqlbuild.model.Express;
+import com.baijr.essql.mysqlparse.model.SortModel;
+import com.baijr.essql.mysqlparse.model.ParseModel;
+import com.baijr.essql.mysqlparse.model.WhereListModel;
 import net.sf.jsqlparser.JSQLParserException;
 import net.sf.jsqlparser.expression.*;
-import net.sf.jsqlparser.expression.operators.arithmetic.*;
 import net.sf.jsqlparser.expression.operators.conditional.AndExpression;
 import net.sf.jsqlparser.expression.operators.conditional.OrExpression;
 import net.sf.jsqlparser.expression.operators.relational.*;
@@ -40,7 +41,8 @@ public class SqlParser {
         List<String> fileds = SqlParser.SelectField(plainSelect);
         Limit limit = SqlParser.SelectLimit(plainSelect);
         List<OrderByElement> orderByElements = SqlParser.SelectOrderby(plainSelect);
-        Expression expression = SqlParser.SelectWhere(plainSelect);
+        List<WhereListModel> whereListModels = SqlParser.SelectWhere(plainSelect);
+        //todo 分组
         GroupByElement groupByElement = SqlParser.SelectGroupby(plainSelect);
         parseModel.setFileds(fileds);
 
@@ -52,20 +54,22 @@ public class SqlParser {
         }
 
         if (orderByElements != null && orderByElements.size() > 0) {
-            List<ParesSort> paresSorts = new ArrayList<>();
+            List<SortModel> paresSorts = new ArrayList<>();
             for (OrderByElement orderByElement : orderByElements) {
                 if (orderByElement.getExpression() instanceof Column) {
                     String filedName = ((Column) orderByElement.getExpression()).getColumnName();
-                    paresSorts.add(new ParesSort(filedName, orderByElement.isAsc() ? "ASC" : "DESC"));
+                    paresSorts.add(new SortModel(filedName, orderByElement.isAsc() ? "ASC" : "DESC"));
                 } else {
                     throw new RuntimeException("ORDER BY 太复杂了 ，请喝杯茶再来");
                 }
             }
             parseModel.setParesSorts(paresSorts);
         }
+        if (whereListModels.size() > 0) {
+            parseModel.setWheres(whereListModels);
+        }
 
-
-        return null;
+        return parseModel;
     }
 
 
@@ -106,10 +110,17 @@ public class SqlParser {
         return fileds;
     }
 
-    static Expression SelectWhere(PlainSelect plainSelect) {
+    static List<WhereListModel> SelectWhere(PlainSelect plainSelect) {
+        List<WhereListModel> whereListModels = new ArrayList<>();
         Expression expression = plainSelect.getWhere();
-        return expression;
+        WhereType whereType = GetWhereType(expression);
+        if (whereType == WhereType.OR) {
+
+        }
+
+        return whereListModels;
     }
+
 
     static Limit SelectLimit(PlainSelect plainSelect) {
         return plainSelect.getLimit();
@@ -126,7 +137,7 @@ public class SqlParser {
         return plainSelect.getOrderByElements();
     }
 
-    static WhereType GetSqlType(Expression expression) {
+    static WhereType GetWhereType(Expression expression) {
         if (expression instanceof AndExpression) {
             return WhereType.AND;
         }
@@ -154,9 +165,14 @@ public class SqlParser {
         if (expression instanceof InExpression) {
             return WhereType.IN;
         }
-
-        if (expression instanceof NullValue) {
-            return WhereType.ISNULL;
+        if (expression instanceof IsNullExpression) {
+            {
+                if (((IsNullExpression) expression).isNot()) {
+                    return WhereType.NOTNULL;
+                } else {
+                    return WhereType.NULL;
+                }
+            }
         }
         if (expression instanceof Parenthesis) {
             return WhereType.Parent;

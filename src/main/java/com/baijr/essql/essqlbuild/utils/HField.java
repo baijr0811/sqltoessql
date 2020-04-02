@@ -16,8 +16,8 @@ public class HField {
     private static final String LT_NAME = "lt";
     private static final String LTE_NAME = "lte";
 
-    public static ExpressBuilder NotNULL(String field) {
-        return new ExpressBuilder(EXISTS_NAME).NotNULL(field);
+    public static ExpressBuilder NotNULL(String...fields) {
+        return new ExpressBuilder(EXISTS_NAME).NotNULL(fields);
     }
 
     public static ExpressBuilder In(String field, String... value) {

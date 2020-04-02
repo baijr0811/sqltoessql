@@ -1,5 +1,10 @@
 package com.baijr.essql.mysqlparse;
 
+/**
+ * @author baijr
+ * @date 2020-04-01
+ * 定义查询类型
+ */
 public enum WhereType {
     AND,
     OR,
@@ -8,7 +13,8 @@ public enum WhereType {
     LESSEQUAL,
     THEN,
     THENEQUAL,
-    ISNULL,
+    NULL,
+    NOTNULL,
     EQUAL,
     NOTEQUAL,
     Parent,

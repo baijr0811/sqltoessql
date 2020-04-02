@@ -1,12 +1,9 @@
 package com.baijr.essql;
 
-import com.baijr.essql.mysqlparse.ParseModel;
+import com.baijr.essql.essqlbuild.builder.Query;
+import com.baijr.essql.essqlbuild.utils.HBuilder;
+import com.baijr.essql.mysqlparse.model.ParseModel;
 import com.baijr.essql.mysqlparse.SqlParser;
-import com.baijr.essql.mysqlparse.SqlType;
-import net.sf.jsqlparser.JSQLParserException;
-import net.sf.jsqlparser.parser.CCJSqlParserUtil;
-import net.sf.jsqlparser.statement.Statement;
-import net.sf.jsqlparser.statement.select.*;
 
 
 /**
@@ -17,6 +14,8 @@ public class SqlParseES {
 
     public static String Sql2ESSql(String sql) {
         ParseModel parseModel = SqlParser.GetParesModel(sql);
-        return null;
+        Query query = HBuilder.Builder();
+
+        return query.ESSQL();
     }
 }
