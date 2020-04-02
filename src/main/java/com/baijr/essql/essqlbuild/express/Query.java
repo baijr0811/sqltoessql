@@ -1,18 +1,17 @@
 package com.baijr.essql.essqlbuild.express;
 
+/**
+ * @author  baijr
+ * @date 2020-04-03
+ */
 public abstract class Query implements Search {
 
     protected String queryKey;
-    protected String templete;
 
-    Query(String queryKey, String templete) {
+    protected Query(String queryKey) {
         this.queryKey = queryKey;
-        this.templete = templete;
     }
-
 
     @Override
-    public String ESSQL() {
-        return queryKey + templete;
-    }
+    public abstract String ESSQL();
 }

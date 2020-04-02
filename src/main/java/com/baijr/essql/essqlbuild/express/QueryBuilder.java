@@ -1,31 +1,37 @@
 package com.baijr.essql.essqlbuild.express;
 
-
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author  baijr
+ * @date 2020-04-03
+ */
 public class QueryBuilder extends Query {
 
     private final List<Query> boolList = new ArrayList<Query>();
     private final List<Query> sortList = new ArrayList<Query>();
-    private final List<Query> fieldList = new ArrayList<Query>();
+    private final List<String> fieldList = new ArrayList<String>();
 
-    public QueryBuilder(String queryKey, String templete) {
-        super(queryKey, templete);
+    public QueryBuilder(String queryKey) {
+        super(queryKey);
     }
 
-    public QueryBuilder Bool(QueryBuilder builder) {
+    public QueryBuilder Bool(BoolQueryBuiler builder) {
         boolList.add(builder);
         return this;
     }
 
-    public QueryBuilder Sort(QueryBuilder builder) {
-        sortList.add(builder);
+    public QueryBuilder Sorts(SortBuilder sortBuilder) {
+        sortList.add(sortBuilder);
         return this;
     }
 
-    public QueryBuilder Fields(QueryBuilder builder) {
-        fieldList.add(builder);
+
+
+    public QueryBuilder Fields(String... fields) {
+        fieldList.addAll(Arrays.asList(fields));
         return this;
     }
 
