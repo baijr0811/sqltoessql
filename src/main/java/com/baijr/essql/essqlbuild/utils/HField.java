@@ -1,4 +1,4 @@
-package com.baijr.essql.essqlbuild.Utils;
+package com.baijr.essql.essqlbuild.utils;
 
 import com.baijr.essql.essqlbuild.builder.ExpressBuilder;
 

@@ -1,10 +1,10 @@
 package com.baijr.essql.essqlbuild.builder;
 
 
-import com.baijr.essql.essqlbuild.Utils.HBuilder;
-import com.baijr.essql.essqlbuild.Utils.HField;
-import com.baijr.essql.essqlbuild.Utils.HSort;
-import com.baijr.essql.essqlbuild.Utils.HWhere;
+import com.baijr.essql.essqlbuild.utils.HBuilder;
+import com.baijr.essql.essqlbuild.utils.HField;
+import com.baijr.essql.essqlbuild.utils.HSort;
+import com.baijr.essql.essqlbuild.utils.HWhere;
 
 
 class MustTermQueryExpressBuilderTest {
