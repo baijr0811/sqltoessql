@@ -1,9 +1,8 @@
 package com.baijr.essql.essqlbuild.Utils;
 
-import com.baijr.essql.essqlbuild.express.ExpressBuilder;
-import com.baijr.essql.essqlbuild.express.BoolQueryBuiler;
-import com.baijr.essql.essqlbuild.express.QueryBuilder;
-import com.baijr.essql.essqlbuild.express.SortBuilder;
+import com.baijr.essql.essqlbuild.builder.BoolQueryBuiler;
+import com.baijr.essql.essqlbuild.builder.QueryBuilder;
+import com.baijr.essql.essqlbuild.builder.SortBuilder;
 
 
 /**

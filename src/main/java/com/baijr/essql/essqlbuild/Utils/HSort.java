@@ -1,6 +1,6 @@
 package com.baijr.essql.essqlbuild.Utils;
 
-import com.baijr.essql.essqlbuild.express.SortBuilder;
+import com.baijr.essql.essqlbuild.builder.SortBuilder;
 
 /**
  * @author baijr

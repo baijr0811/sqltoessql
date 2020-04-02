@@ -1,6 +1,6 @@
 package com.baijr.essql.essqlbuild.Utils;
 
-import com.baijr.essql.essqlbuild.express.ExpressBuilder;
+import com.baijr.essql.essqlbuild.builder.ExpressBuilder;
 
 /**
  * @author baijr
