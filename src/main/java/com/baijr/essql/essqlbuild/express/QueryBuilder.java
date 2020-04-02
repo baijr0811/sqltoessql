@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * @author  baijr
+ * @author baijr
  * @date 2020-04-03
  */
 public class QueryBuilder extends Query {
@@ -13,6 +13,8 @@ public class QueryBuilder extends Query {
     private final List<Query> boolList = new ArrayList<Query>();
     private final List<Query> sortList = new ArrayList<Query>();
     private final List<String> fieldList = new ArrayList<String>();
+    private int from = 0;
+    private int to = 20;
 
     public QueryBuilder(String queryKey) {
         super(queryKey);
@@ -28,7 +30,15 @@ public class QueryBuilder extends Query {
         return this;
     }
 
+    public QueryBuilder From(int from) {
+        this.from = from;
+        return this;
+    }
 
+    public QueryBuilder To(int to) {
+        this.to = to;
+        return this;
+    }
 
     public QueryBuilder Fields(String... fields) {
         fieldList.addAll(Arrays.asList(fields));

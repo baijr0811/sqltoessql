@@ -23,7 +23,9 @@ class MustTermQueryExpressBuilderTest {
                         )
                 )
                 .Sorts(HSort.ASC("asc").DESC("desc"))
-                .Fields("f", "x", "y", "z");
-        System.out.println(query.toString());
+                .Fields("f", "x", "y", "z")
+                .From(0)
+                .To(20);
+        System.out.println(query.ESSQL());
     }
 }

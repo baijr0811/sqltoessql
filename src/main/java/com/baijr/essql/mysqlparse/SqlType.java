@@ -22,3 +22,5 @@ public enum SqlType {
     UPSERT,
     NONE
 }
+
+
