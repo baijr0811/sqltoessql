@@ -1,7 +1,7 @@
 package com.baijr.essql.essqlbuild.utils;
 
-import com.baijr.essql.essqlbuild.builder.BoolBaseBuilderBuiler;
-import com.baijr.essql.essqlbuild.builder.BaseBuilderBuilder;
+import com.baijr.essql.essqlbuild.builder.BoolBaseBuilder;
+import com.baijr.essql.essqlbuild.builder.QueryBuilder;
 import com.baijr.essql.essqlbuild.builder.SortBuilder;
 
 
@@ -17,21 +17,21 @@ public class HBuilder {
     private static final String SOURCE_NAME = "_source";
 
 
-    public static BaseBuilderBuilder Builder() {
-        return new BaseBuilderBuilder(QUERY_NAME);
+    public static QueryBuilder Builder() {
+        return new QueryBuilder(QUERY_NAME);
     }
 
-    public static BaseBuilderBuilder Bool(BoolBaseBuilderBuiler boolQueryBuiler) {
-        return new BaseBuilderBuilder(BOOL_NAME).Bool(boolQueryBuiler);
+    public static QueryBuilder Bool(BoolBaseBuilder boolQueryBuiler) {
+        return new QueryBuilder(BOOL_NAME).Bool(boolQueryBuiler);
     }
 
-    public static BaseBuilderBuilder Sorts(SortBuilder sortBuilder) {
-        return new BaseBuilderBuilder(SORT_NAME).Sorts(sortBuilder);
+    public static QueryBuilder Sorts(SortBuilder sortBuilder) {
+        return new QueryBuilder(SORT_NAME).Sorts(sortBuilder);
     }
 
 
-    public static BaseBuilderBuilder Fields(String... fields) {
-        return new BaseBuilderBuilder(SOURCE_NAME).Fields(fields);
+    public static QueryBuilder Fields(String... fields) {
+        return new QueryBuilder(SOURCE_NAME).Fields(fields);
     }
 
 

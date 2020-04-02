@@ -7,27 +7,27 @@ import java.util.List;
  * @author  baijr
  * @date 2020-04-03
  */
-public class BoolBaseBuilderBuiler extends BaseBuilder {
+public class BoolBaseBuilder extends BaseBuilder {
 
     private final List<BaseBuilder> mustList = new ArrayList<BaseBuilder>();
     private final List<BaseBuilder> shouldList = new ArrayList<BaseBuilder>();
     private final List<BaseBuilder> mustnotList = new ArrayList<BaseBuilder>();
 
-    public BoolBaseBuilderBuiler(String queryKey) {
+    public BoolBaseBuilder(String queryKey) {
         super(queryKey);
     }
 
-    public BoolBaseBuilderBuiler AND(ExpressBuilder builder) {
+    public BoolBaseBuilder AND(ExpressBuilder builder) {
         mustList.add(builder);
         return this;
     }
 
-    public BoolBaseBuilderBuiler OR(ExpressBuilder builder) {
+    public BoolBaseBuilder OR(ExpressBuilder builder) {
         shouldList.add(builder);
         return this;
     }
 
-    public BoolBaseBuilderBuiler NOT(ExpressBuilder builder) {
+    public BoolBaseBuilder NOT(ExpressBuilder builder) {
         mustnotList.add(builder);
         return this;
     }

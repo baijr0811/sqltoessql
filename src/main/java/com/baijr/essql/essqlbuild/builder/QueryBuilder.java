@@ -8,7 +8,7 @@ import java.util.List;
  * @author baijr
  * @date 2020-04-03
  */
-public class BaseBuilderBuilder extends BaseBuilder {
+public class QueryBuilder extends BaseBuilder {
 
     private final List<BaseBuilder> boolList = new ArrayList<BaseBuilder>();
     private final List<BaseBuilder> sortList = new ArrayList<BaseBuilder>();
@@ -16,31 +16,31 @@ public class BaseBuilderBuilder extends BaseBuilder {
     private int from = 0;
     private int to = 20;
 
-    public BaseBuilderBuilder(String queryKey) {
+    public QueryBuilder(String queryKey) {
         super(queryKey);
     }
 
-    public BaseBuilderBuilder Bool(BoolBaseBuilderBuiler builder) {
+    public QueryBuilder Bool(BoolBaseBuilder builder) {
         boolList.add(builder);
         return this;
     }
 
-    public BaseBuilderBuilder Sorts(SortBuilder sortBuilder) {
+    public QueryBuilder Sorts(SortBuilder sortBuilder) {
         sortList.add(sortBuilder);
         return this;
     }
 
-    public BaseBuilderBuilder From(int from) {
+    public QueryBuilder From(int from) {
         this.from = from;
         return this;
     }
 
-    public BaseBuilderBuilder To(int to) {
+    public QueryBuilder To(int to) {
         this.to = to;
         return this;
     }
 
-    public BaseBuilderBuilder Fields(String... fields) {
+    public QueryBuilder Fields(String... fields) {
         fieldList.addAll(Arrays.asList(fields));
         return this;
     }
