@@ -20,7 +20,7 @@ public class QueryBuilder extends BaseBuilder {
         super(queryKey);
     }
 
-    public QueryBuilder Bool(BoolBaseBuilder builder) {
+    public QueryBuilder Bool(BoolBuilder builder) {
         boolList.add(builder);
         return this;
     }

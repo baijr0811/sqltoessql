@@ -1,6 +1,6 @@
 package com.baijr.essql.essqlbuild.utils;
 
-import com.baijr.essql.essqlbuild.builder.BoolBaseBuilder;
+import com.baijr.essql.essqlbuild.builder.BoolBuilder;
 import com.baijr.essql.essqlbuild.builder.QueryBuilder;
 import com.baijr.essql.essqlbuild.builder.SortBuilder;
 
@@ -21,8 +21,8 @@ public class HBuilder {
         return new QueryBuilder(QUERY_NAME);
     }
 
-    public static QueryBuilder Bool(BoolBaseBuilder boolQueryBuiler) {
-        return new QueryBuilder(BOOL_NAME).Bool(boolQueryBuiler);
+    public static QueryBuilder Bool(BoolBuilder boolBuilder) {
+        return new QueryBuilder(BOOL_NAME).Bool(boolBuilder);
     }
 
     public static QueryBuilder Sorts(SortBuilder sortBuilder) {

@@ -1,5 +1,6 @@
 package com.baijr.essql.mysqlparse;
 
+import com.baijr.essql.essqlbuild.builder.BoolBuilder;
 import com.baijr.essql.essqlbuild.builder.Query;
 import com.baijr.essql.essqlbuild.builder.QueryBuilder;
 import com.baijr.essql.essqlbuild.utils.HBuilder;
@@ -29,7 +30,9 @@ public class ParserUitls {
         ParserLimit(plainSelect, query);
         ParserSorts(plainSelect, query);
         ParserGroupBy(plainSelect, query);
+
         ParserWhere.SelectWhere(plainSelect, query);
+
         return query;
     }
 
@@ -48,6 +51,8 @@ public class ParserUitls {
                     public void visit(SelectExpressionItem item) {
                         if (item.getExpression() instanceof Column) {
                             query.Fields(((Column) item.getExpression()).getColumnName());
+                        } else {
+                            throw new RuntimeException("SELECT" + item.getExpression().toString() + "无法解析，只支持Column查询");
                         }
                     }
 
@@ -58,10 +63,6 @@ public class ParserUitls {
                 });
             }
         }
-        if (query.Fields().FIELDSQL() == null) {
-            throw new RuntimeException("SELECT 字段暂时解析不了，只支持Column查询");
-        }
-
     }
 
     /**
