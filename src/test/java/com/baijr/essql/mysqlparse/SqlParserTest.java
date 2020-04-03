@@ -1,10 +1,7 @@
 package com.baijr.essql.mysqlparse;
 
 
-import com.baijr.essql.mysqlparse.model.WhereListModel;
-import com.baijr.essql.mysqlparse.parser.SqlParser;
-import com.baijr.essql.mysqlparse.parser.SqlType;
-import com.baijr.essql.mysqlparse.parser.SqlWhereParser;
+import com.baijr.essql.mysqlparse.model.ORListModel;
 import net.sf.jsqlparser.JSQLParserException;
 import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.statement.Statement;
@@ -41,7 +38,7 @@ public class SqlParserTest {
             List<String> fileds = SqlParser.SelectField(plainSelect);
             Limit limit = SqlParser.SelectLimit(plainSelect);
             List<OrderByElement> orderByElements = SqlParser.SelectOrderby(plainSelect);
-            List<WhereListModel> whereListModels = SqlWhereParser.SelectWhere(plainSelect);
+            List<ORListModel> ORListModels = ParserWhere.SelectWhere(plainSelect);
             GroupByElement groupByElement = SqlParser.SelectGroupby(plainSelect);
         }
 

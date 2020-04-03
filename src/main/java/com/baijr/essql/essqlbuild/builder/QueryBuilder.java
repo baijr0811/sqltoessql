@@ -47,6 +47,18 @@ public class QueryBuilder extends BaseBuilder {
 
     @Override
     public String ESSQL() {
-        return queryKey + boolList.toString() + sortList.toString() + fieldList.toString();
+        return queryKey;
+    }
+
+    public String FIELDSQL() {
+        return fieldList.toString();
+    }
+
+    public String BOOLSQL() {
+        return boolList.toString();
+    }
+
+    public String SORTSQL() {
+        return sortList.toString();
     }
 }
