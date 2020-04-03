@@ -1,7 +1,6 @@
 package com.baijr.essql.mysqlparse;
 
 
-import com.baijr.essql.mysqlparse.model.ORListModel;
 import net.sf.jsqlparser.JSQLParserException;
 import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.statement.Statement;
@@ -32,16 +31,6 @@ public class SqlParserTest {
         } catch (JSQLParserException e) {
             throw new RuntimeException("SQL 太复杂了，请喝杯茶再来");
         }
-
-        if (SqlParser.GetSqlType(stmt).equals(SqlType.SELECT)) {
-            PlainSelect plainSelect = (PlainSelect) ((Select) stmt).getSelectBody();
-            List<String> fileds = SqlParser.SelectField(plainSelect);
-            Limit limit = SqlParser.SelectLimit(plainSelect);
-            List<OrderByElement> orderByElements = SqlParser.SelectOrderby(plainSelect);
-            List<ORListModel> ORListModels = ParserWhere.SelectWhere(plainSelect);
-            GroupByElement groupByElement = SqlParser.SelectGroupby(plainSelect);
-        }
-
 
     }
 

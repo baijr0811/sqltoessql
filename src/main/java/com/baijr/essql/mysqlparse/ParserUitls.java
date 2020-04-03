@@ -1,23 +1,21 @@
-package com.baijr.essql;
+package com.baijr.essql.mysqlparse;
 
 import com.baijr.essql.essqlbuild.builder.Query;
 import com.baijr.essql.essqlbuild.builder.QueryBuilder;
 import com.baijr.essql.essqlbuild.utils.HBuilder;
 import com.baijr.essql.essqlbuild.utils.HSort;
-import com.baijr.essql.mysqlparse.SqlParser;
-import com.baijr.essql.mysqlparse.ParserWhere;
-import com.sun.deploy.util.StringUtils;
 import net.sf.jsqlparser.JSQLParserException;
 import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.schema.Column;
 import net.sf.jsqlparser.statement.Statement;
 import net.sf.jsqlparser.statement.select.*;
 
+import java.util.List;
+
 /**
  * @author baijr
  * @date 2020-04-03
  */
-import java.util.List;
 
 public class ParserUitls {
 
@@ -75,10 +73,10 @@ public class ParserUitls {
     static void ParserLimit(PlainSelect plainSelect, QueryBuilder query) {
 
         Limit limit = plainSelect.getLimit();
-        if (limit.getOffset() != null) {
+        if (limit != null && limit.getOffset() != null) {
             query.From(Integer.parseInt(limit.getOffset().toString()));
         }
-        if (limit.getRowCount() != null) {
+        if (limit != null && limit.getRowCount() != null) {
             query.To(Integer.parseInt(limit.getRowCount().toString()));
         }
     }
