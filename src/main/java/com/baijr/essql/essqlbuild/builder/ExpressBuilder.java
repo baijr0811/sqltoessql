@@ -60,6 +60,14 @@ public class ExpressBuilder extends BaseBuilder {
 
     @Override
     public String ESSQL() {
-        return queryKey + terms.toString();
+        return queryKey;
+    }
+
+    public String TERMSQL() {
+        return terms.toString();
+    }
+
+    public String EXISTSSQL() {
+        return exists.toString();
     }
 }

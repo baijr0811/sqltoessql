@@ -32,4 +32,5 @@ public class SortBuilder extends BaseBuilder {
     public String ESSQL() {
         return sorts.toString();
     }
+
 }

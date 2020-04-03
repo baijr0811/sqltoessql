@@ -34,6 +34,18 @@ public class BoolBaseBuilder extends BaseBuilder {
 
     @Override
     public String ESSQL() {
-        return queryKey + mustList.toString() + mustnotList.toString() + shouldList.toString();
+        return queryKey;
+    }
+
+    public String SHOUDSQL() {
+        return shouldList.toString();
+    }
+
+    public String MUSTSQL() {
+        return mustList.toString();
+    }
+
+    public String MUSTNOTSQL() {
+        return mustnotList.toString();
     }
 }

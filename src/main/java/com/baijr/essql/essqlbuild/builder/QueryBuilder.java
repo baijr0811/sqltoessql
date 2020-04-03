@@ -61,4 +61,12 @@ public class QueryBuilder extends BaseBuilder {
     public String SORTSQL() {
         return sortList.toString();
     }
+
+    public String FORMSQL() {
+        return String.valueOf(from);
+    }
+
+    public String TOSQL() {
+        return String.valueOf(to);
+    }
 }
