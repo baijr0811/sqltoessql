@@ -1,4 +1,4 @@
-package com.baijr.essql.mysqlparse;
+package com.baijr.essql.mysqlparse.parser;
 
 /**
  * @author baijr

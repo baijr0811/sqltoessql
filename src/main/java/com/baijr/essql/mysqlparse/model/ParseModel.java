@@ -4,7 +4,8 @@ import java.util.List;
 
 /**
  * @author baijr
- * 2020-04-01
+ * @date 2020-04-01
+ * sql 解析出来得对象
  */
 public class ParseModel {
 

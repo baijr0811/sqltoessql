@@ -22,7 +22,7 @@ public class HWhere {
         return new BoolBaseBuilder(SHOULD_NAME).OR(expressBuilder);
     }
 
-    public static BoolBaseBuilder NOT(ExpressBuilder expressBuilder) {
-        return new BoolBaseBuilder(MUST_NOT_NAME).NOT(expressBuilder);
+    public static BoolBaseBuilder ANDNOT(ExpressBuilder expressBuilder) {
+        return new BoolBaseBuilder(MUST_NOT_NAME).ANDNOT(expressBuilder);
     }
 }

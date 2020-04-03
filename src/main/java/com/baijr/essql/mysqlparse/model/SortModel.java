@@ -1,5 +1,10 @@
 package com.baijr.essql.mysqlparse.model;
 
+/**
+ * @author baijr
+ * @date 2020-04-01
+ * 排序对象
+ */
 public class SortModel {
 
     private String field;

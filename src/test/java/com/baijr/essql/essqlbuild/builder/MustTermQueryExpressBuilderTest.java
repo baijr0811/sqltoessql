@@ -26,6 +26,10 @@ class MustTermQueryExpressBuilderTest {
                                 .Equal("d", "5")
                                 .Then("e", "6")
                         )
+                        .ANDNOT(HField
+                                .NotNULL("nn")
+                                .Then("f", "7")
+                        )
                 )
                 .Sorts(HSort.ASC("asc").DESC("desc"))
                 .Fields("f", "x", "y", "z")

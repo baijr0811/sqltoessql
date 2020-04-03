@@ -1,13 +1,12 @@
 package com.baijr.essql.mysqlparse.model;
 
-import com.baijr.essql.mysqlparse.WhereType;
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author baijr
  * @date 2020-04-01
+ * 字段列表
  */
 public class WhereListModel {
 

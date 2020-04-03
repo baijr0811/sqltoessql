@@ -1,10 +1,11 @@
 package com.baijr.essql.mysqlparse;
 
 
-import com.baijr.essql.essqlbuild.model.Express;
 import com.baijr.essql.mysqlparse.model.WhereListModel;
+import com.baijr.essql.mysqlparse.parser.SqlParser;
+import com.baijr.essql.mysqlparse.parser.SqlType;
+import com.baijr.essql.mysqlparse.parser.SqlWhereParser;
 import net.sf.jsqlparser.JSQLParserException;
-import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.statement.Statement;
 import net.sf.jsqlparser.statement.select.*;
@@ -25,6 +26,9 @@ public class SqlParserTest {
                 " order by c asc ,d desc " +
                 " limit 1,2";
 
+
+        String sql1 = " select * from t";
+
         Statement stmt = null;
         try {
             stmt = CCJSqlParserUtil.parse(sql);
@@ -37,7 +41,7 @@ public class SqlParserTest {
             List<String> fileds = SqlParser.SelectField(plainSelect);
             Limit limit = SqlParser.SelectLimit(plainSelect);
             List<OrderByElement> orderByElements = SqlParser.SelectOrderby(plainSelect);
-            List<WhereListModel> whereListModels = SqlParser.SelectWhere(plainSelect);
+            List<WhereListModel> whereListModels = SqlWhereParser.SelectWhere(plainSelect);
             GroupByElement groupByElement = SqlParser.SelectGroupby(plainSelect);
         }
 

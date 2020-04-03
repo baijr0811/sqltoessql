@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author  baijr
+ * @author baijr
  * @date 2020-04-03
  */
 public class BoolBaseBuilder extends BaseBuilder {
@@ -27,7 +27,7 @@ public class BoolBaseBuilder extends BaseBuilder {
         return this;
     }
 
-    public BoolBaseBuilder NOT(ExpressBuilder builder) {
+    public BoolBaseBuilder ANDNOT(ExpressBuilder builder) {
         mustnotList.add(builder);
         return this;
     }

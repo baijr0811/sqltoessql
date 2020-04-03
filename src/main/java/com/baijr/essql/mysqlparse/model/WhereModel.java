@@ -1,16 +1,21 @@
 package com.baijr.essql.mysqlparse.model;
 
-import com.baijr.essql.mysqlparse.WhereType;
+import com.baijr.essql.mysqlparse.parser.WhereType;
 
-class WhereModel {
+/**
+ * @author baijr
+ * @date 2020-04-01
+ * WHERE字段属性
+ */
+public class WhereModel {
 
     private WhereType whereType;
 
     private String fieldName;
 
-    private String fieldValue;
+    private Object fieldValue;
 
-    WhereModel(WhereType whereType, String fieldName) {
+    public WhereModel(WhereType whereType, String fieldName) {
 
         this.whereType = whereType;
         this.fieldName = fieldName;
@@ -38,11 +43,11 @@ class WhereModel {
         this.fieldName = fieldName;
     }
 
-    public String getFieldValue() {
+    public Object getFieldValue() {
         return fieldValue;
     }
 
-    public void setFieldValue(String fieldValue) {
+    public void setFieldValue(Object fieldValue) {
         this.fieldValue = fieldValue;
     }
 }
