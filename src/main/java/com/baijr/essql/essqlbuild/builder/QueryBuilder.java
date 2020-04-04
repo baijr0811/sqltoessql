@@ -11,8 +11,8 @@ import java.util.List;
 public class QueryBuilder extends BaseBuilder {
 
     private BaseBuilder bool = null;
-    private final List<BaseBuilder> sort = new ArrayList<BaseBuilder>();
-    private final List<String> _source = new ArrayList<String>();
+    private BaseBuilder sort = null;
+    private final List<String> _source = new ArrayList<>();
     private int from = 0;
     private int to = 20;
 
@@ -26,7 +26,7 @@ public class QueryBuilder extends BaseBuilder {
     }
 
     public QueryBuilder Sort(SortBuilder sortBuilder) {
-        sort.add(sortBuilder);
+        sort = sortBuilder;
         return this;
     }
 

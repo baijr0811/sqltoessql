@@ -12,25 +12,25 @@ import java.util.List;
  */
 public class SortBuilder extends BaseBuilder {
 
-    private final List<Sort> sorts = new ArrayList<Sort>();
+    private final List<Sort> sort = new ArrayList<>();
 
     public SortBuilder(String queryKey) {
         super(queryKey);
     }
 
     public SortBuilder ASC(String field) {
-        sorts.add(new Sort(field, "asc"));
+        sort.add(new Sort(field, "asc"));
         return this;
     }
 
     public SortBuilder DESC(String field) {
-        sorts.add(new Sort(field, "desc"));
+        sort.add(new Sort(field, "desc"));
         return this;
     }
 
     @Override
     public String ESSQL() {
-        return sorts.toString();
+        return sort.toString();
     }
 
 }
