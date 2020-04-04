@@ -25,9 +25,9 @@ public class Fields {
         this.values.add(value);
     }
 
-    public Fields(String field, String filed) {
+    public Fields(String field, String value) {
         this.filed = field;
-        this.filed = filed;
+        this.values.add(value);
     }
 
     public Fields(String filed, List<String> values) {

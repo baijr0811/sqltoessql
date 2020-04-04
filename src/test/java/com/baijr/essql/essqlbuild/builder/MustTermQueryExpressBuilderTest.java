@@ -17,6 +17,7 @@ class MustTermQueryExpressBuilderTest {
                 .Bool(HWhere
                         .AND(HField
                                 .Equal("a", "0")
+                                .Equal("a1", "10")
                                 .In("b", "1", "2", "3")
                                 .Less("c", "4")
                                 .NotNULL("n")
