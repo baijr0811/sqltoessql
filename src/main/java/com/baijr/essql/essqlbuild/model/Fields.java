@@ -25,8 +25,8 @@ public class Fields {
         this.values.add(value);
     }
 
-    public Fields(String expressType, String filed) {
-        this.expressType = expressType;
+    public Fields(String field, String filed) {
+        this.filed = field;
         this.filed = filed;
     }
 
