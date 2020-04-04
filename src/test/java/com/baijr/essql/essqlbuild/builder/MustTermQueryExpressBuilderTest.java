@@ -32,7 +32,7 @@ class MustTermQueryExpressBuilderTest {
                                 .Then("f", "7")
                         )
                 )
-                .Sorts(HSort.ASC("asc").DESC("desc"))
+                .Sort(HSort.ASC("asc").DESC("desc"))
                 .Fields("f", "x", "y", "z")
                 .From(0)
                 .To(20);

@@ -25,7 +25,7 @@ public class QueryBuilder extends BaseBuilder {
         return this;
     }
 
-    public QueryBuilder Sorts(SortBuilder sortBuilder) {
+    public QueryBuilder Sort(SortBuilder sortBuilder) {
         sort.add(sortBuilder);
         return this;
     }

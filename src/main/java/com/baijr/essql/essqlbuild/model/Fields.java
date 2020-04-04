@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author  baijr
+ * @author baijr
  * @date 2020-04-03
  */
 public class Fields {
@@ -15,14 +15,13 @@ public class Fields {
 
     private List<String> values = new ArrayList<String>();
 
-    public Fields(String expressType, List<String> values) {
-        this.expressType = expressType;
+    public Fields(List<String> values) {
         this.values = values;
     }
 
     public Fields(String expressType, String field, String value) {
-        this.expressType = expressType;
         this.filed = field;
+        this.expressType = expressType;
         this.values.add(value);
     }
 
@@ -31,8 +30,7 @@ public class Fields {
         this.filed = filed;
     }
 
-    public Fields(String expressType, String filed, List<String> values) {
-        this.expressType = expressType;
+    public Fields(String filed, List<String> values) {
         this.filed = filed;
         this.values = values;
 

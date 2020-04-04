@@ -1,6 +1,5 @@
 package com.baijr.essql.mysqlparse;
 
-import com.baijr.essql.essqlbuild.builder.BoolBuilder;
 import com.baijr.essql.essqlbuild.builder.Query;
 import com.baijr.essql.essqlbuild.builder.QueryBuilder;
 import com.baijr.essql.essqlbuild.utils.HBuilder;
@@ -95,9 +94,9 @@ public class ParserUitls {
                 if (orderByElement.getExpression() instanceof Column) {
                     String filedName = ((Column) orderByElement.getExpression()).getColumnName();
                     if (orderByElement.isAsc()) {
-                        query.Sorts(HSort.ASC(filedName));
+                        query.Sort(HSort.ASC(filedName));
                     } else {
-                        query.Sorts(HSort.DESC(filedName));
+                        query.Sort(HSort.DESC(filedName));
                     }
                 } else {
                     throw new RuntimeException("ORDER BY 太复杂了 ，请喝杯茶再来");

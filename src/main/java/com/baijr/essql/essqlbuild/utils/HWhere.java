@@ -9,10 +9,6 @@ import com.baijr.essql.essqlbuild.builder.FieldBuilder;
  */
 public class HWhere {
 
-    private static final String MUST_NAME = "must";
-    private static final String SHOULD_NAME = "should";
-    private static final String MUST_NOT_NAME = "must_not";
-
     private static final String BOOL_NAME = "bool";
 
     public static BoolBuilder AND(FieldBuilder fieldBuilder) {
