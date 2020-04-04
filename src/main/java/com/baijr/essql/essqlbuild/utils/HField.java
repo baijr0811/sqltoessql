@@ -1,6 +1,6 @@
 package com.baijr.essql.essqlbuild.utils;
 
-import com.baijr.essql.essqlbuild.builder.ExpressBuilder;
+import com.baijr.essql.essqlbuild.builder.FieldBuilder;
 
 /**
  * @author baijr
@@ -16,32 +16,34 @@ public class HField {
     private static final String LT_NAME = "lt";
     private static final String LTE_NAME = "lte";
 
-    public static ExpressBuilder NotNULL(String...fields) {
-        return new ExpressBuilder(EXISTS_NAME).NotNULL(fields);
+
+
+    public static FieldBuilder NotNULL(String...fields) {
+        return new FieldBuilder(EXISTS_NAME).NotNULL(fields);
     }
 
-    public static ExpressBuilder In(String field, String... value) {
-        return new ExpressBuilder(TERMS_NAME).In(field, value);
+    public static FieldBuilder In(String field, String... value) {
+        return new FieldBuilder(TERMS_NAME).In(field, value);
     }
 
-    public static ExpressBuilder Equal(String field, String value) {
-        return new ExpressBuilder(TERM_NAME).Equal(field, value);
+    public static FieldBuilder Equal(String field, String value) {
+        return new FieldBuilder(TERM_NAME).Equal(field, value);
     }
 
-    public static ExpressBuilder Then(String field, String value) {
-        return new ExpressBuilder(GT_NAME).Then(field, value);
+    public static FieldBuilder Then(String field, String value) {
+        return new FieldBuilder(GT_NAME).Then(field, value);
     }
 
-    public static ExpressBuilder ThenEqual(String field, String value) {
-        return new ExpressBuilder(GTE_NAME).ThenEqual(field, value);
+    public static FieldBuilder ThenEqual(String field, String value) {
+        return new FieldBuilder(GTE_NAME).ThenEqual(field, value);
     }
 
-    public static ExpressBuilder Less(String field, String value) {
-        return new ExpressBuilder(LT_NAME).Less(field, value);
+    public static FieldBuilder Less(String field, String value) {
+        return new FieldBuilder(LT_NAME).Less(field, value);
     }
 
-    public static ExpressBuilder LessEqual(String field, String value) {
-        return new ExpressBuilder(LTE_NAME).LessEqual(field, value);
+    public static FieldBuilder LessEqual(String field, String value) {
+        return new FieldBuilder(LTE_NAME).LessEqual(field, value);
 
     }
 

@@ -2,6 +2,7 @@ package com.baijr.essql.mysqlparse;
 
 
 import net.sf.jsqlparser.JSQLParserException;
+import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.parser.CCJSqlParserUtil;
 import net.sf.jsqlparser.statement.Statement;
 import net.sf.jsqlparser.statement.select.*;
@@ -23,15 +24,11 @@ public class SqlParserTest {
                 " limit 1,2";
 
 
-        String sql1 = " select * from t";
+        String sql1 = " select * from t where  c in(1,2,3)";
 
-        Statement stmt = null;
-        try {
-            stmt = CCJSqlParserUtil.parse(sql);
-        } catch (JSQLParserException e) {
-            throw new RuntimeException("SQL 太复杂了，请喝杯茶再来");
-        }
 
+        PlainSelect plainSelect = ParserUitls.GetPlainSelect(sql);
+        Expression expression = plainSelect.getWhere();
     }
 
 }

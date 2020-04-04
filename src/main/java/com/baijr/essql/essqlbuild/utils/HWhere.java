@@ -1,7 +1,7 @@
 package com.baijr.essql.essqlbuild.utils;
 
 import com.baijr.essql.essqlbuild.builder.BoolBuilder;
-import com.baijr.essql.essqlbuild.builder.ExpressBuilder;
+import com.baijr.essql.essqlbuild.builder.FieldBuilder;
 
 /**
  * @author baijr
@@ -13,16 +13,18 @@ public class HWhere {
     private static final String SHOULD_NAME = "should";
     private static final String MUST_NOT_NAME = "must_not";
 
-    public static BoolBuilder AND(ExpressBuilder expressBuilder) {
-        return new BoolBuilder(MUST_NAME).AND(expressBuilder);
+    private static final String BOOL_NAME = "bool";
+
+    public static BoolBuilder AND(FieldBuilder fieldBuilder) {
+        return new BoolBuilder(BOOL_NAME).AND(fieldBuilder);
 
     }
 
-    public static BoolBuilder OR(ExpressBuilder expressBuilder) {
-        return new BoolBuilder(SHOULD_NAME).OR(expressBuilder);
+    public static BoolBuilder OR(FieldBuilder fieldBuilder) {
+        return new BoolBuilder(BOOL_NAME).OR(fieldBuilder);
     }
 
-    public static BoolBuilder ANDNOT(ExpressBuilder expressBuilder) {
-        return new BoolBuilder(MUST_NOT_NAME).ANDNOT(expressBuilder);
+    public static BoolBuilder ANDNOT(FieldBuilder fieldBuilder) {
+        return new BoolBuilder(BOOL_NAME).ANDNOT(fieldBuilder);
     }
 }

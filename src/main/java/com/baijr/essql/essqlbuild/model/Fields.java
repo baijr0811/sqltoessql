@@ -7,7 +7,7 @@ import java.util.List;
  * @author  baijr
  * @date 2020-04-03
  */
-public class Express {
+public class Fields {
 
     private String expressType;
 
@@ -15,18 +15,23 @@ public class Express {
 
     private List<String> values = new ArrayList<String>();
 
-    public Express(String expressType, String field, String value) {
+    public Fields(String expressType, List<String> values) {
+        this.expressType = expressType;
+        this.values = values;
+    }
+
+    public Fields(String expressType, String field, String value) {
         this.expressType = expressType;
         this.filed = field;
         this.values.add(value);
     }
 
-    public Express(String expressType, String filed) {
+    public Fields(String expressType, String filed) {
         this.expressType = expressType;
         this.filed = filed;
     }
 
-    public Express(String expressType, String filed, List<String> values) {
+    public Fields(String expressType, String filed, List<String> values) {
         this.expressType = expressType;
         this.filed = filed;
         this.values = values;

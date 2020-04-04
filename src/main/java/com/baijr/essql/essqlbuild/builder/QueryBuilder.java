@@ -10,9 +10,9 @@ import java.util.List;
  */
 public class QueryBuilder extends BaseBuilder {
 
-    private final List<BaseBuilder> boolList = new ArrayList<BaseBuilder>();
-    private final List<BaseBuilder> sortList = new ArrayList<BaseBuilder>();
-    private final List<String> fieldList = new ArrayList<String>();
+    private final List<BaseBuilder> bool = new ArrayList<BaseBuilder>();
+    private final List<BaseBuilder> sort = new ArrayList<BaseBuilder>();
+    private final List<String> _source = new ArrayList<String>();
     private int from = 0;
     private int to = 20;
 
@@ -21,12 +21,12 @@ public class QueryBuilder extends BaseBuilder {
     }
 
     public QueryBuilder Bool(BoolBuilder builder) {
-        boolList.add(builder);
+        bool.add(builder);
         return this;
     }
 
     public QueryBuilder Sorts(SortBuilder sortBuilder) {
-        sortList.add(sortBuilder);
+        sort.add(sortBuilder);
         return this;
     }
 
@@ -41,7 +41,7 @@ public class QueryBuilder extends BaseBuilder {
     }
 
     public QueryBuilder Fields(String... fields) {
-        fieldList.addAll(Arrays.asList(fields));
+        _source.addAll(Arrays.asList(fields));
         return this;
     }
 
@@ -51,15 +51,15 @@ public class QueryBuilder extends BaseBuilder {
     }
 
     public String FIELDSQL() {
-        return fieldList.toString();
+        return _source.toString();
     }
 
     public String BOOLSQL() {
-        return boolList.toString();
+        return bool.toString();
     }
 
     public String SORTSQL() {
-        return sortList.toString();
+        return sort.toString();
     }
 
     public String FORMSQL() {
