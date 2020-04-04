@@ -44,13 +44,13 @@ public class ParserWhere {
         }
     }
 
+
     static void EachORBool(Expression expression, BoolBuilder boolBuilder) {
         FieldBuilder fieldBuilder = new FieldBuilder("fields");
         if (expression instanceof AndExpression) {
             EachANDBool(expression, fieldBuilder);
             boolBuilder.OR(fieldBuilder);
-        }
-        if (expression instanceof OrExpression) {
+        } else if (expression instanceof OrExpression) {
             OrExpression orExpression = (OrExpression) expression;
             EachANDBool(orExpression.getRightExpression(), fieldBuilder);
             boolBuilder.OR(fieldBuilder);
@@ -141,7 +141,9 @@ public class ParserWhere {
             IsNullExpression isNullExpression = ((IsNullExpression) expression);
             if (isNullExpression.getLeftExpression() instanceof Column) {
                 String fieldName = ((Column) isNullExpression.getLeftExpression()).getColumnName();
-                fieldBuilder.NotNULL(fieldName);
+                if (isNullExpression.isNot()) {
+                    fieldBuilder.NotNULL(fieldName);
+                }
 
             } else {
                 throw new RuntimeException("Where 语句：" + isNullExpression.toString() + "解析不了");
@@ -164,8 +166,6 @@ public class ParserWhere {
             } else {
                 throw new RuntimeException("Where 语句：" + inExpression.toString() + "解析不了");
             }
-
-        } else if (expression instanceof Parenthesis) {
 
         } else {
             throw new RuntimeException("Where 语句：" + expression.toString() + "解析不了");
