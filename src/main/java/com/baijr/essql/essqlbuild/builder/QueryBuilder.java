@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class QueryBuilder extends BaseBuilder {
 
-    private final List<BaseBuilder> bool = new ArrayList<BaseBuilder>();
+    private BaseBuilder bool = null;
     private final List<BaseBuilder> sort = new ArrayList<BaseBuilder>();
     private final List<String> _source = new ArrayList<String>();
     private int from = 0;
@@ -21,7 +21,7 @@ public class QueryBuilder extends BaseBuilder {
     }
 
     public QueryBuilder Bool(BoolBuilder builder) {
-        bool.add(builder);
+        bool = builder;
         return this;
     }
 
