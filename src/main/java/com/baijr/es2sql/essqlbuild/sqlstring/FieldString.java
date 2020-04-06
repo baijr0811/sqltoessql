@@ -114,6 +114,13 @@ public class FieldString {
     }
 
     public static String getExistsSQL(List<Fields> list) {
+//        {
+//            "exists":
+//            {
+//                "field": "title"
+//            }
+//        }
+
         StringBuilder builder = new StringBuilder();
         if (list != null && list.size() > 0) {
 
@@ -125,6 +132,16 @@ public class FieldString {
 
 
     public static String getRangeSQL(List<Fields> list) {
+
+//        {
+//            "range": {
+//            "biz_id": {
+//                "gte": 1,
+//                        "lte": 2000000000
+//            }
+//        }
+//        }
+
         StringBuilder builder = new StringBuilder();
         if (list != null && list.size() > 0) {
 
