@@ -1,6 +1,6 @@
 package com.baijr.es2sql.essqlbuild.builder;
 
-import com.baijr.es2sql.essqlbuild.GlobalConsts;
+import com.baijr.es2sql.essqlbuild.sqlstring.GlobalConsts;
 
 import java.util.ArrayList;
 import java.util.Arrays;

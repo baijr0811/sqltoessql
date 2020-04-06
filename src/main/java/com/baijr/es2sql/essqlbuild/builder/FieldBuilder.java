@@ -2,6 +2,7 @@ package com.baijr.es2sql.essqlbuild.builder;
 
 
 import com.baijr.es2sql.essqlbuild.model.Fields;
+import com.baijr.es2sql.essqlbuild.sqlstring.FieldString;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,12 +19,12 @@ public class FieldBuilder extends BaseBuilder {
     private static final String LT_NAME = "lt";
     private static final String LTE_NAME = "lte";
 
-    private final List<Fields> term = new ArrayList<Fields>();
-    private final List<Fields> terms = new ArrayList<Fields>();
-    private final List<Fields> exists = new ArrayList<Fields>();
-    private final List<Fields> range = new ArrayList<Fields>();
+    private final List<Fields> term = new ArrayList<>();
+    private final List<Fields> terms = new ArrayList<>();
+    private final List<Fields> exists = new ArrayList<>();
+    private final List<Fields> range = new ArrayList<>();
 
-    private BoolBuilder childBool = null;
+    private final List<BoolBuilder> childBools = new ArrayList<>();
 
     public FieldBuilder(String queryKey) {
         super(queryKey);
@@ -66,14 +67,23 @@ public class FieldBuilder extends BaseBuilder {
         return this;
     }
 
-    public BaseBuilder ChildBool(BoolBuilder builder) {
-        childBool = builder;
+    public BaseBuilder ChildBool(BoolBuilder boolBuilder) {
+        childBools.add(boolBuilder);
         return this;
     }
 
     @Override
     public String ESSQL() {
-        return queryKey;
+        List<String> sqls = new ArrayList<>();
+        String termStr = FieldString.getTermSQL(term);
+        String termsStr = FieldString.getTermsSQL(terms);
+        if (!"".equals(termStr)) {
+            sqls.add(termStr);
+        }
+        if (!"".equals(termsStr)) {
+            sqls.add(termsStr);
+        }
+        return String.join(",", sqls);
     }
 
 }

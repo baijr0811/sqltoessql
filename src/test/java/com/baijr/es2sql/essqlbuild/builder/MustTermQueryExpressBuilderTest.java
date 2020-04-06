@@ -18,7 +18,7 @@ class MustTermQueryExpressBuilderTest {
                         .AND(HField
                                 .Equal("a", "0")
                                 .Equal("a1", "10")
-                                .In("b", "1", "2", "3")
+                                .In("b", "a", "b", "c")
                                 .Less("c", "4")
                                 .NotNULL("n")
                                 .NotNULL("l")
@@ -38,6 +38,8 @@ class MustTermQueryExpressBuilderTest {
                 .From(0)
                 .To(20);
 
+
+        HField.In("a","a","2","3").ESSQL();
         System.out.println(query.ESSQL());
     }
 }
