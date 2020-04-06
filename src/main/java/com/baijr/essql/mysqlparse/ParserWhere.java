@@ -55,7 +55,11 @@ public class ParserWhere {
             EachANDBool(orExpression.getRightExpression(), fieldBuilder);
             boolBuilder.OR(fieldBuilder);
             EachORBool(orExpression.getLeftExpression(), boolBuilder);
+        } else {
+            ParseExpress(expression, fieldBuilder);
+            boolBuilder.OR(fieldBuilder);
         }
+
     }
 
     static void EachANDBool(Expression expression, FieldBuilder fieldBuilder) {
