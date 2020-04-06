@@ -9,26 +9,26 @@ import java.util.List;
  */
 public class BoolBuilder extends BaseBuilder {
 
-    private BaseBuilder must = null;
-    private BaseBuilder should = null;
-    private BaseBuilder must_not = null;
+    private final List<BaseBuilder> must = new ArrayList<BaseBuilder>();
+    private final List<BaseBuilder> should = new ArrayList<BaseBuilder>();
+    private final List<BaseBuilder> must_not = new ArrayList<BaseBuilder>();
 
     public BoolBuilder(String queryKey) {
         super(queryKey);
     }
 
     public BoolBuilder AND(FieldBuilder builder) {
-        must = (builder);
+        must.add(builder);
         return this;
     }
 
     public BoolBuilder OR(FieldBuilder builder) {
-        should = (builder);
+        should.add(builder);
         return this;
     }
 
-    public BoolBuilder ANDNOT(FieldBuilder builder) {
-        must_not = (builder);
+    public BoolBuilder ISNOTNULL(FieldBuilder builder) {
+        must_not.add(builder);
         return this;
     }
 
@@ -37,15 +37,4 @@ public class BoolBuilder extends BaseBuilder {
         return queryKey;
     }
 
-    public String SHOUDSQL() {
-        return should.toString();
-    }
-
-    public String MUSTSQL() {
-        return must.toString();
-    }
-
-    public String MUSTNOTSQL() {
-        return must_not.toString();
-    }
 }

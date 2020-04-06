@@ -20,7 +20,7 @@ public class HWhere {
         return new BoolBuilder(BOOL_NAME).OR(fieldBuilder);
     }
 
-    public static BoolBuilder ANDNOT(FieldBuilder fieldBuilder) {
-        return new BoolBuilder(BOOL_NAME).ANDNOT(fieldBuilder);
+    public static BoolBuilder ISNOTNULL(FieldBuilder fieldBuilder) {
+        return new BoolBuilder(BOOL_NAME).ISNOTNULL(fieldBuilder);
     }
 }

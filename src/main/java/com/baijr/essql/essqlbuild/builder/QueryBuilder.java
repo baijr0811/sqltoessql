@@ -50,23 +50,4 @@ public class QueryBuilder extends BaseBuilder {
         return queryKey;
     }
 
-    public String FIELDSQL() {
-        return _source.toString();
-    }
-
-    public String BOOLSQL() {
-        return bool.toString();
-    }
-
-    public String SORTSQL() {
-        return sort.toString();
-    }
-
-    public String FORMSQL() {
-        return String.valueOf(from);
-    }
-
-    public String TOSQL() {
-        return String.valueOf(to);
-    }
 }
