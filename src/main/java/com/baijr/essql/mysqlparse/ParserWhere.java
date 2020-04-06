@@ -171,6 +171,12 @@ public class ParserWhere {
                 throw new RuntimeException("Where 语句：" + inExpression.toString() + "解析不了");
             }
 
+        } else if (expression instanceof Parenthesis) {
+
+            BoolBuilder childBoolBuilder = new BoolBuilder("bool");
+
+            fieldBuilder.ChildBool(childBoolBuilder);
+
         } else {
             throw new RuntimeException("Where 语句：" + expression.toString() + "解析不了");
         }
