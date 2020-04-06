@@ -8,7 +8,7 @@ public class SqlParseESTest {
 
     public static void main(String[] args) {
         String sql = " select a,b,c from t" +
-                " where  (f=4 or g=5) " +
+                " where  a=1 or b=2 and c=3 " +
                 " order by c asc ,d desc " +
                 " limit 1,2";
 

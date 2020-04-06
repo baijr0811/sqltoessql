@@ -27,7 +27,7 @@ public class BoolBuilder extends BaseBuilder {
         return this;
     }
 
-    public BoolBuilder ISNOTNULL(FieldBuilder builder) {
+    public BoolBuilder NOT(FieldBuilder builder) {
         must_not.add(builder);
         return this;
     }
