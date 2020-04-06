@@ -1,5 +1,7 @@
 package com.baijr.essql.essqlbuild.utils;
 
+import com.baijr.essql.essqlbuild.builder.BaseBuilder;
+import com.baijr.essql.essqlbuild.builder.BoolBuilder;
 import com.baijr.essql.essqlbuild.builder.FieldBuilder;
 
 /**
@@ -37,6 +39,11 @@ public class HField {
 
     public static FieldBuilder LessEqual(String field, String value) {
         return new FieldBuilder(Field_NAME).LessEqual(field, value);
+
+    }
+
+    public static BaseBuilder ChildBool(BoolBuilder boolBuilder) {
+        return new FieldBuilder(Field_NAME).ChildBool(boolBuilder);
 
     }
 

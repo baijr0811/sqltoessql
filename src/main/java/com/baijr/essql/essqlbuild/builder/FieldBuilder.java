@@ -23,6 +23,7 @@ public class FieldBuilder extends BaseBuilder {
     private final List<Fields> exists = new ArrayList<Fields>();
     private final List<Fields> range = new ArrayList<Fields>();
 
+    private BoolBuilder childBool = null;
 
     public FieldBuilder(String queryKey) {
         super(queryKey);
@@ -62,6 +63,11 @@ public class FieldBuilder extends BaseBuilder {
 
     public FieldBuilder LessEqual(String field, String value) {
         range.add(new Fields(LTE_NAME, field, value));
+        return this;
+    }
+
+    public BaseBuilder ChildBool(BoolBuilder builder) {
+        childBool = builder;
         return this;
     }
 
