@@ -173,18 +173,14 @@ public class ParserWhere {
 
         } else if (expression instanceof Parenthesis) {
 
+            Parenthesis parenthesis = (Parenthesis) expression;
             BoolBuilder childBoolBuilder = new BoolBuilder("bool");
-
+            EachORBool(parenthesis.getExpression(), childBoolBuilder);
             fieldBuilder.ChildBool(childBoolBuilder);
 
         } else {
             throw new RuntimeException("Where 语句：" + expression.toString() + "解析不了");
         }
-
-    }
-
-    // and (a=1 or b=2)
-    static void EachParenthesis() {
 
     }
 
