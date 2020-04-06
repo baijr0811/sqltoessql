@@ -9,9 +9,9 @@ import java.util.List;
  */
 public class BoolBuilder extends BaseBuilder {
 
-    private final List<BaseBuilder> must = new ArrayList<BaseBuilder>();
-    private final List<BaseBuilder> should = new ArrayList<BaseBuilder>();
-    private final List<BaseBuilder> must_not = new ArrayList<BaseBuilder>();
+    private final List<FieldBuilder> must = new ArrayList<>();
+    private final List<FieldBuilder> should = new ArrayList<>();
+    private final List<FieldBuilder> must_not = new ArrayList<>();
 
     public BoolBuilder(String queryKey) {
         super(queryKey);

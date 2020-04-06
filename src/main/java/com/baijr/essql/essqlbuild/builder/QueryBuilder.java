@@ -11,8 +11,8 @@ import java.util.List;
 public class QueryBuilder extends BaseBuilder {
 
     private BaseBuilder bool = null;
-    private final List<BaseBuilder> sort = new ArrayList<BaseBuilder>();
-    private final List<String> _source = new ArrayList<String>();
+    private final List<SortBuilder> sort = new ArrayList<>();
+    private final List<String> _source = new ArrayList<>();
     private int from = 0;
     private int to = 20;
 
