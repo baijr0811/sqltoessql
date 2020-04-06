@@ -28,7 +28,7 @@ class MustTermQueryExpressBuilderTest {
                                 .Then("e", "6")
                                 .LessEqual("e", "8")
                         )
-                        .ANDNOT(HField
+                        .AND(HField
                                 .NotNULL("nn")
                                 .Then("f", "7")
                         )
