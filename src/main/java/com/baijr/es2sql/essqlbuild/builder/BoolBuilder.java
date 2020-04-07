@@ -1,5 +1,8 @@
 package com.baijr.es2sql.essqlbuild.builder;
 
+import com.baijr.es2sql.essqlbuild.sqlstring.BoolString;
+import com.baijr.es2sql.essqlbuild.sqlstring.FieldString;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +37,20 @@ public class BoolBuilder extends BaseBuilder {
 
     @Override
     public String ESSQL() {
-        return queryKey;
+        List<String> sqls = new ArrayList<>();
+        String mustStr = BoolString.getMustSQL(must);
+        String shouldStr = BoolString.getShouldSQL(should);
+        String must_notStr = BoolString.getMustNotSQL(must_not);
+        if (!"".equals(mustStr)) {
+            sqls.add(mustStr);
+        }
+        if (!"".equals(shouldStr)) {
+            sqls.add(shouldStr);
+        }
+        if (!"".equals(must_notStr)) {
+            sqls.add(must_notStr);
+        }
+        return BoolString.getBoolSql(String.join(",", sqls));
     }
 
 }

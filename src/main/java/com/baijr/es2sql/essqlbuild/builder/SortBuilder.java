@@ -2,6 +2,7 @@ package com.baijr.es2sql.essqlbuild.builder;
 
 import com.alibaba.fastjson.JSON;
 import com.baijr.es2sql.essqlbuild.model.Sort;
+import com.baijr.es2sql.essqlbuild.sqlstring.SortString;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ public class SortBuilder extends BaseBuilder {
 
     @Override
     public String ESSQL() {
-        return JSON.toJSONString(sort);
+        return SortString.getSortSql(sort);
     }
 
 }

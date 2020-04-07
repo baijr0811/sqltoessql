@@ -77,11 +77,19 @@ public class FieldBuilder extends BaseBuilder {
         List<String> sqls = new ArrayList<>();
         String termStr = FieldString.getTermSQL(term);
         String termsStr = FieldString.getTermsSQL(terms);
+        String existsStr = FieldString.getExistsSQL(exists);
+        String rangeStr = FieldString.getRangeSQL(range);
         if (!"".equals(termStr)) {
             sqls.add(termStr);
         }
         if (!"".equals(termsStr)) {
             sqls.add(termsStr);
+        }
+        if (!"".equals(existsStr)) {
+            sqls.add(existsStr);
+        }
+        if (!"".equals(rangeStr)) {
+            sqls.add(rangeStr);
         }
         return String.join(",", sqls);
     }

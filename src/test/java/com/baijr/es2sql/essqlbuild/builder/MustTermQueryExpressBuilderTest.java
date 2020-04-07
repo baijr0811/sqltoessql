@@ -36,7 +36,7 @@ class MustTermQueryExpressBuilderTest {
                 .Sort(HSort.ASC("asc").DESC("desc"))
                 .Fields("f", "x", "y", "z")
                 .From(0)
-                .To(20);
+                .Size(20);
 
 
         HField.In("a","a","2","3").ESSQL();

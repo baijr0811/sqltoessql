@@ -3,7 +3,10 @@ package com.baijr.es2sql.essqlbuild.sqlstring;
 import com.baijr.es2sql.essqlbuild.model.Fields;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.BiConsumer;
+import java.util.stream.Collectors;
 
 /**
  * @author baijr
@@ -76,7 +79,7 @@ public class FieldString {
                 list.forEach((x) -> {
                     builder.append(GlobalConsts.LEFT_BRACE);
                     builder.append(GlobalConsts.QUOTE);
-                    builder.append(GlobalConsts.TERM);
+                    builder.append(GlobalConsts.TERMS);
                     builder.append(GlobalConsts.QUOTE);
                     builder.append(GlobalConsts.COLON);
                     builder.append(GlobalConsts.LEFT_BRACE);
@@ -97,6 +100,7 @@ public class FieldString {
                                 builder.append(GlobalConsts.COMMA);
                             }
                         });
+                        builder.append(GlobalConsts.RIGHT_SQUARE);
                     }
                     builder.append(GlobalConsts.RIGHT_BRACE);
                     builder.append(GlobalConsts.RIGHT_BRACE);
@@ -123,13 +127,46 @@ public class FieldString {
 
         StringBuilder builder = new StringBuilder();
         if (list != null && list.size() > 0) {
+            AtomicInteger i = new AtomicInteger();
+            list.forEach((x) -> {
+                builder.append(GlobalConsts.LEFT_BRACE);
+                builder.append(GlobalConsts.QUOTE);
+                builder.append(GlobalConsts.EXISTS);
+                builder.append(GlobalConsts.QUOTE);
+                builder.append(GlobalConsts.COLON);
+                builder.append(GlobalConsts.LEFT_BRACE);
+                builder.append(GlobalConsts.QUOTE);
+                builder.append(GlobalConsts.FIELD);
+                builder.append(GlobalConsts.QUOTE);
+                builder.append(GlobalConsts.COLON);
 
+                if (x.getValues().size() > 0) {
+                    AtomicInteger i1 = new AtomicInteger();
+                    builder.append(GlobalConsts.LEFT_SQUARE);
+                    x.getValues().forEach(y -> {
+                        builder.append(GlobalConsts.QUOTE);
+                        builder.append(y);
+                        builder.append(GlobalConsts.QUOTE);
+                        i1.getAndIncrement();
+                        if (i1.get() != x.getValues().size()) {
+                            builder.append(GlobalConsts.COMMA);
+                        }
+                    });
+                    builder.append(GlobalConsts.RIGHT_SQUARE);
+                }
+
+                builder.append(GlobalConsts.RIGHT_BRACE);
+                builder.append(GlobalConsts.RIGHT_BRACE);
+                i.getAndIncrement();
+                if (i.get() != list.size()) {
+                    builder.append(GlobalConsts.COMMA);
+                }
+            });
 
         }
 
         return builder.toString();
     }
-
 
     public static String getRangeSQL(List<Fields> list) {
 
@@ -137,15 +174,47 @@ public class FieldString {
 //            "range": {
 //            "biz_id": {
 //                "gte": 1,
-//                        "lte": 2000000000
+//                "lte": 2000000000
 //            }
 //        }
 //        }
 
         StringBuilder builder = new StringBuilder();
         if (list != null && list.size() > 0) {
-
-
+            Map<String, List<Fields>> fields = list.stream().collect(Collectors.groupingBy(Fields::getFiled));
+            AtomicInteger i = new AtomicInteger();
+            fields.forEach((field, fieldsList) -> {
+                builder.append(GlobalConsts.LEFT_BRACE);
+                builder.append(GlobalConsts.QUOTE);
+                builder.append(GlobalConsts.RANGE);
+                builder.append(GlobalConsts.QUOTE);
+                builder.append(GlobalConsts.LEFT_BRACE);
+                builder.append(GlobalConsts.QUOTE);
+                builder.append(field);
+                builder.append(GlobalConsts.QUOTE);
+                builder.append(GlobalConsts.LEFT_BRACE);
+                AtomicInteger i1 = new AtomicInteger();
+                fieldsList.stream().forEach(y -> {
+                    builder.append(GlobalConsts.QUOTE);
+                    builder.append(y.getExpressType());
+                    builder.append(GlobalConsts.QUOTE);
+                    builder.append(GlobalConsts.COLON);
+                    builder.append(GlobalConsts.QUOTE);
+                    builder.append(y.getValues().get(0));
+                    builder.append(GlobalConsts.QUOTE);
+                    builder.append(GlobalConsts.COMMA);
+                    if (i1.get() != fieldsList.size()) {
+                        builder.append(GlobalConsts.COMMA);
+                    }
+                });
+                builder.append(GlobalConsts.RIGHT_BRACE);
+                builder.append(GlobalConsts.RIGHT_BRACE);
+                builder.append(GlobalConsts.RIGHT_BRACE);
+                i.getAndIncrement();
+                if (i.get() != list.size()) {
+                    builder.append(GlobalConsts.COMMA);
+                }
+            });
         }
 
         return builder.toString();

@@ -77,7 +77,7 @@ public class ParserUitls {
             query.From(Integer.parseInt(limit.getOffset().toString()));
         }
         if (limit != null && limit.getRowCount() != null) {
-            query.To(Integer.parseInt(limit.getRowCount().toString()));
+            query.Size(Integer.parseInt(limit.getRowCount().toString()));
         }
     }
 

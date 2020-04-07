@@ -1,6 +1,8 @@
 package com.baijr.es2sql.essqlbuild.builder;
 
+import com.baijr.es2sql.essqlbuild.sqlstring.FieldString;
 import com.baijr.es2sql.essqlbuild.sqlstring.GlobalConsts;
+import com.baijr.es2sql.essqlbuild.sqlstring.QueryString;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,11 +14,11 @@ import java.util.List;
  */
 public class QueryBuilder extends BaseBuilder {
 
-    private BaseBuilder bool = null;
+    private BoolBuilder bool = null;
     private final List<SortBuilder> sort = new ArrayList<>();
     private final List<String> _source = new ArrayList<>();
     private int from = 0;
-    private int to = 20;
+    private int size = 20;
 
     public QueryBuilder(String queryKey) {
         super(queryKey);
@@ -37,8 +39,8 @@ public class QueryBuilder extends BaseBuilder {
         return this;
     }
 
-    public QueryBuilder To(int to) {
-        this.to = to;
+    public QueryBuilder Size(int size) {
+        this.size = size;
         return this;
     }
 
@@ -49,12 +51,28 @@ public class QueryBuilder extends BaseBuilder {
 
     @Override
     public String ESSQL() {
-        StringBuilder builder = new StringBuilder();
-        builder.append(GlobalConsts.LEFT_BRACE);
-        builder.append(this.queryKey);
-        builder.append(GlobalConsts.RIGHT_BRACE);
-
-        return builder.toString();
+        List<String> sqls = new ArrayList<>();
+        String queryStr = QueryString.getQuerySql(bool);
+        String fromStr = QueryString.getFromSql(from);
+        String sizeStr = QueryString.getSizeSql(size);
+        String _sourceStr = QueryString.getFieldSql(_source);
+        String sortStr = QueryString.getSortSql(sort);
+        if (!"".equals(queryStr)) {
+            sqls.add(queryStr);
+        }
+        if (!"".equals(fromStr)) {
+            sqls.add(fromStr);
+        }
+        if (!"".equals(sizeStr)) {
+            sqls.add(sizeStr);
+        }
+        if (!"".equals(_sourceStr)) {
+            sqls.add(_sourceStr);
+        }
+        if (!"".equals(sortStr)) {
+            sqls.add(sortStr);
+        }
+        return QueryString.getSql(String.join(",", sqls));
     }
 
 }
