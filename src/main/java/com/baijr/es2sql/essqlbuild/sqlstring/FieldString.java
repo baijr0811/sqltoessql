@@ -226,12 +226,10 @@ public class FieldString {
         if (list != null && list.size() > 0) {
             AtomicInteger i = new AtomicInteger();
             list.forEach((x) -> {
-                builder.append(GlobalConsts.QUOTE);
-                builder.append(GlobalConsts.QUERY);
-                builder.append(GlobalConsts.QUOTE);
-                builder.append(GlobalConsts.COLON);
                 builder.append(GlobalConsts.LEFT_BRACE);
-                builder.append(x.ESSQL());
+                if (!"".equals(x.ESSQL())) {
+                    builder.append(x.ESSQL());
+                }
                 builder.append(GlobalConsts.RIGHT_BRACE);
                 i.getAndIncrement();
                 if (i.get() != list.size()) {

@@ -23,19 +23,19 @@ public class BoolString {
         StringBuilder builder = new StringBuilder();
         if (list != null && list.size() > 0) {
             AtomicInteger i = new AtomicInteger();
+            builder.append(GlobalConsts.QUOTE);
+            builder.append(GlobalConsts.MUST);
+            builder.append(GlobalConsts.QUOTE);
+            builder.append(GlobalConsts.COLON);
+            builder.append(GlobalConsts.LEFT_SQUARE);
             list.forEach((x) -> {
-                builder.append(GlobalConsts.QUOTE);
-                builder.append(GlobalConsts.MUST);
-                builder.append(GlobalConsts.QUOTE);
-                builder.append(GlobalConsts.COLON);
-                builder.append(GlobalConsts.LEFT_SQUARE);
                 builder.append(x.ESSQL());
-                builder.append(GlobalConsts.RIGHT_SQUARE);
                 i.getAndIncrement();
                 if (i.get() != list.size()) {
                     builder.append(GlobalConsts.COMMA);
                 }
             });
+            builder.append(GlobalConsts.RIGHT_SQUARE);
         }
 
         return builder.toString();
@@ -48,19 +48,19 @@ public class BoolString {
         StringBuilder builder = new StringBuilder();
         if (list != null && list.size() > 0) {
             AtomicInteger i = new AtomicInteger();
+            builder.append(GlobalConsts.QUOTE);
+            builder.append(GlobalConsts.MUSTNOT);
+            builder.append(GlobalConsts.QUOTE);
+            builder.append(GlobalConsts.COLON);
+            builder.append(GlobalConsts.LEFT_SQUARE);
             list.forEach((x) -> {
-                builder.append(GlobalConsts.QUOTE);
-                builder.append(GlobalConsts.MUSTNOT);
-                builder.append(GlobalConsts.QUOTE);
-                builder.append(GlobalConsts.COLON);
-                builder.append(GlobalConsts.LEFT_SQUARE);
                 builder.append(x.ESSQL());
-                builder.append(GlobalConsts.RIGHT_SQUARE);
                 i.getAndIncrement();
                 if (i.get() != list.size()) {
                     builder.append(GlobalConsts.COMMA);
                 }
             });
+            builder.append(GlobalConsts.RIGHT_SQUARE);
         }
 
         return builder.toString();
@@ -72,20 +72,20 @@ public class BoolString {
 //        }
         StringBuilder builder = new StringBuilder();
         if (list != null && list.size() > 0) {
+            builder.append(GlobalConsts.QUOTE);
+            builder.append(GlobalConsts.SHOULD);
+            builder.append(GlobalConsts.QUOTE);
+            builder.append(GlobalConsts.COLON);
             AtomicInteger i = new AtomicInteger();
+            builder.append(GlobalConsts.LEFT_SQUARE);
             list.forEach((x) -> {
-                builder.append(GlobalConsts.QUOTE);
-                builder.append(GlobalConsts.SHOULD);
-                builder.append(GlobalConsts.QUOTE);
-                builder.append(GlobalConsts.COLON);
-                builder.append(GlobalConsts.LEFT_SQUARE);
                 builder.append(x.ESSQL());
-                builder.append(GlobalConsts.RIGHT_SQUARE);
                 i.getAndIncrement();
                 if (i.get() != list.size()) {
                     builder.append(GlobalConsts.COMMA);
                 }
             });
+            builder.append(GlobalConsts.RIGHT_SQUARE);
         }
 
         return builder.toString();
