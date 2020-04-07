@@ -189,10 +189,12 @@ public class FieldString {
                 builder.append(GlobalConsts.QUOTE);
                 builder.append(GlobalConsts.RANGE);
                 builder.append(GlobalConsts.QUOTE);
+                builder.append(GlobalConsts.COLON);
                 builder.append(GlobalConsts.LEFT_BRACE);
                 builder.append(GlobalConsts.QUOTE);
                 builder.append(field);
                 builder.append(GlobalConsts.QUOTE);
+                builder.append(GlobalConsts.COLON);
                 builder.append(GlobalConsts.LEFT_BRACE);
                 AtomicInteger i1 = new AtomicInteger();
                 fieldsList.stream().forEach(y -> {
@@ -203,7 +205,7 @@ public class FieldString {
                     builder.append(GlobalConsts.QUOTE);
                     builder.append(y.getValues().get(0));
                     builder.append(GlobalConsts.QUOTE);
-                    builder.append(GlobalConsts.COMMA);
+                    i1.getAndIncrement();
                     if (i1.get() != fieldsList.size()) {
                         builder.append(GlobalConsts.COMMA);
                     }
@@ -212,7 +214,7 @@ public class FieldString {
                 builder.append(GlobalConsts.RIGHT_BRACE);
                 builder.append(GlobalConsts.RIGHT_BRACE);
                 i.getAndIncrement();
-                if (i.get() != list.size()) {
+                if (i.get() != fields.size()) {
                     builder.append(GlobalConsts.COMMA);
                 }
             });
