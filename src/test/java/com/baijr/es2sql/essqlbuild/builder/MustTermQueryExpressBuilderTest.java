@@ -22,6 +22,8 @@ class MustTermQueryExpressBuilderTest {
                                 .Less("c", "4")
                                 .NotNULL("n")
                                 .NotNULL("l")
+                                .ChildBool(HWhere.AND(HField.Equal("a","b")))
+
                         )
                         .OR(HField
                                 .Equal("d", "5")

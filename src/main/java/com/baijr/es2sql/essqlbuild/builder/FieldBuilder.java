@@ -67,7 +67,7 @@ public class FieldBuilder extends BaseBuilder {
         return this;
     }
 
-    public BaseBuilder ChildBool(BoolBuilder boolBuilder) {
+    public FieldBuilder ChildBool(BoolBuilder boolBuilder) {
         childBools.add(boolBuilder);
         return this;
     }
