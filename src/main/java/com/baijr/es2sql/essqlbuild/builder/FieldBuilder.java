@@ -2,7 +2,9 @@ package com.baijr.es2sql.essqlbuild.builder;
 
 
 import com.baijr.es2sql.essqlbuild.model.Fields;
+import com.baijr.es2sql.essqlbuild.sqlstring.BoolString;
 import com.baijr.es2sql.essqlbuild.sqlstring.FieldString;
+import com.baijr.es2sql.essqlbuild.sqlstring.QueryString;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -79,6 +81,7 @@ public class FieldBuilder extends BaseBuilder {
         String termsStr = FieldString.getTermsSQL(terms);
         String existsStr = FieldString.getExistsSQL(exists);
         String rangeStr = FieldString.getRangeSQL(range);
+        String childStr = FieldString.getChildBoolSql(childBools);
         if (!"".equals(termStr)) {
             sqls.add(termStr);
         }
@@ -91,7 +94,11 @@ public class FieldBuilder extends BaseBuilder {
         if (!"".equals(rangeStr)) {
             sqls.add(rangeStr);
         }
+        if (!"".equals(childStr)) {
+            sqls.add(childStr);
+        }
         return String.join(",", sqls);
     }
+
 
 }

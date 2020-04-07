@@ -1,5 +1,6 @@
 package com.baijr.es2sql.essqlbuild.sqlstring;
 
+import com.baijr.es2sql.essqlbuild.builder.BoolBuilder;
 import com.baijr.es2sql.essqlbuild.model.Fields;
 
 import java.util.List;
@@ -218,5 +219,27 @@ public class FieldString {
         }
 
         return builder.toString();
+    }
+
+    public static String getChildBoolSql(List<BoolBuilder> list) {
+        StringBuilder builder = new StringBuilder();
+        if (list != null && list.size() > 0) {
+            AtomicInteger i = new AtomicInteger();
+            list.forEach((x) -> {
+                builder.append(GlobalConsts.QUOTE);
+                builder.append(GlobalConsts.QUERY);
+                builder.append(GlobalConsts.QUOTE);
+                builder.append(GlobalConsts.COLON);
+                builder.append(GlobalConsts.LEFT_BRACE);
+                builder.append(x.ESSQL());
+                builder.append(GlobalConsts.RIGHT_BRACE);
+                i.getAndIncrement();
+                if (i.get() != list.size()) {
+                    builder.append(GlobalConsts.COMMA);
+                }
+            });
+        }
+        return builder.toString();
+
     }
 }
