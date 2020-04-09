@@ -83,6 +83,15 @@ public class ParserWhere {
             } else {
                 throw new RuntimeException("Where 语句：" + equalsTo.getStringExpression() + "解析不了");
             }
+        } else if (expression instanceof NotEqualsTo) {
+            NotEqualsTo notEqualsTo = ((NotEqualsTo) expression);
+            if (notEqualsTo.getLeftExpression() instanceof Column && ValueCheck(notEqualsTo.getRightExpression())) {
+                String fieldName = ((Column) notEqualsTo.getLeftExpression()).getColumnName();
+                String value = notEqualsTo.getRightExpression().toString();
+                fieldBuilder.NotEqual(fieldName, value);
+            } else {
+                throw new RuntimeException("Where 语句：" + notEqualsTo.getStringExpression() + "解析不了");
+            }
         } else if (expression instanceof MinorThan) {
             MinorThan minorThan = ((MinorThan) expression);
             if (minorThan.getLeftExpression() instanceof Column && ValueCheck(minorThan.getRightExpression())) {
@@ -144,6 +153,8 @@ public class ParserWhere {
                 String fieldName = ((Column) isNullExpression.getLeftExpression()).getColumnName();
                 if (isNullExpression.isNot()) {
                     fieldBuilder.NotNULL(fieldName);
+                } else {
+                    fieldBuilder.NULL(fieldName);
                 }
 
             } else {
