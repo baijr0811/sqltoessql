@@ -44,11 +44,12 @@ public class SortString {
                 builder.append(x.getOrderby());
                 builder.append(GlobalConsts.QUOTE);
                 builder.append(GlobalConsts.RIGHT_BRACE);
+                builder.append(GlobalConsts.RIGHT_BRACE);
                 i.getAndIncrement();
                 if (i.get() != list.size()) {
                     builder.append(GlobalConsts.COMMA);
                 }
-                builder.append(GlobalConsts.RIGHT_BRACE);
+
             });
             return builder.toString();
         }

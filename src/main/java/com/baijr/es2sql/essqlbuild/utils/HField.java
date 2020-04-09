@@ -17,6 +17,10 @@ public class HField {
         return new FieldBuilder(Field_NAME).NotNULL(fields);
     }
 
+    public static FieldBuilder NULL(String... fields) {
+        return new FieldBuilder(Field_NAME).NULL(fields);
+    }
+
     public static FieldBuilder In(String field, String... value) {
         return new FieldBuilder(Field_NAME).In(field, value);
     }
@@ -24,6 +28,11 @@ public class HField {
     public static FieldBuilder Equal(String field, String value) {
         return new FieldBuilder(Field_NAME).Equal(field, value);
     }
+
+    public static FieldBuilder NotEqual(String field, String value) {
+        return new FieldBuilder(Field_NAME).NotEqual(field, value);
+    }
+
 
     public static FieldBuilder Then(String field, String value) {
         return new FieldBuilder(Field_NAME).Then(field, value);

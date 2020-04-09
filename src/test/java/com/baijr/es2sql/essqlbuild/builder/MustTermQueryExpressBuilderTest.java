@@ -22,7 +22,9 @@ class MustTermQueryExpressBuilderTest {
                                 .Less("c", "4")
                                 .NotNULL("n")
                                 .NotNULL("l")
-                                .ChildBool(HWhere.AND(HField.Equal("a","b")))
+                                .NULL("l", "u")
+                                .NotEqual("not", "adasf")
+                                .ChildBool(HWhere.AND(HField.Equal("a", "b")))
 
                         )
                         .OR(HField
@@ -41,7 +43,6 @@ class MustTermQueryExpressBuilderTest {
                 .Size(20);
 
 
-        HField.In("a","a","2","3").ESSQL();
         System.out.println(query.ESSQL());
     }
 }

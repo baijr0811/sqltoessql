@@ -66,6 +66,72 @@ public class FieldString {
 
     }
 
+    public static String getNotTermSQL(List<Fields> list) {
+
+//        {
+//            "term": {
+//            "main_data_type": {
+//                "value": "koubei"
+//            }
+//        }
+//        }
+
+        StringBuilder builder = new StringBuilder();
+
+        if (list != null && list.size() > 0) {
+            builder.append(GlobalConsts.LEFT_BRACE);
+            builder.append(GlobalConsts.QUOTE);
+            builder.append(GlobalConsts.BOOL);
+            builder.append(GlobalConsts.QUOTE);
+            builder.append(GlobalConsts.COLON);
+            builder.append(GlobalConsts.LEFT_BRACE);
+            builder.append(GlobalConsts.QUOTE);
+            builder.append(GlobalConsts.MUSTNOT);
+            builder.append(GlobalConsts.QUOTE);
+            builder.append(GlobalConsts.COLON);
+            builder.append(GlobalConsts.LEFT_SQUARE);
+
+            AtomicInteger i = new AtomicInteger();
+            list.forEach((x) -> {
+                builder.append(GlobalConsts.LEFT_BRACE);
+                builder.append(GlobalConsts.QUOTE);
+                builder.append(GlobalConsts.TERM);
+                builder.append(GlobalConsts.QUOTE);
+                builder.append(GlobalConsts.COLON);
+                builder.append(GlobalConsts.LEFT_BRACE);
+                builder.append(GlobalConsts.QUOTE);
+                builder.append(x.getFiled());
+                builder.append(GlobalConsts.QUOTE);
+                builder.append(GlobalConsts.COLON);
+                builder.append(GlobalConsts.LEFT_BRACE);
+                builder.append(GlobalConsts.QUOTE);
+                builder.append(GlobalConsts.VALUE);
+                builder.append(GlobalConsts.QUOTE);
+                builder.append(GlobalConsts.COLON);
+                if (x.getValues().size() > 0) {
+                    builder.append(GlobalConsts.QUOTE);
+                    builder.append(x.getValues().get(0));
+                    builder.append(GlobalConsts.QUOTE);
+                }
+                builder.append(GlobalConsts.RIGHT_BRACE);
+                builder.append(GlobalConsts.RIGHT_BRACE);
+                builder.append(GlobalConsts.RIGHT_BRACE);
+                i.getAndIncrement();
+                if (i.get() != list.size()) {
+                    builder.append(GlobalConsts.COMMA);
+                }
+            });
+
+            builder.append(GlobalConsts.RIGHT_SQUARE);
+            builder.append(GlobalConsts.RIGHT_BRACE);
+            builder.append(GlobalConsts.RIGHT_BRACE);
+        }
+
+        return builder.toString();
+
+    }
+
+
     public static String getTermsSQL(List<Fields> list) {
 //        {
 //            "terms":{
@@ -168,6 +234,83 @@ public class FieldString {
 
         return builder.toString();
     }
+
+    public static String getNullSQL(List<Fields> list) {
+//        {
+//            "bool": {
+//            "must_not": [
+//            {
+//
+//                "exists":
+//                {
+//                    "field": "title"
+//                }
+//
+//            }
+//           ]
+//        }
+//        }
+
+        StringBuilder builder = new StringBuilder();
+        if (list != null && list.size() > 0) {
+
+            builder.append(GlobalConsts.LEFT_BRACE);
+            builder.append(GlobalConsts.QUOTE);
+            builder.append(GlobalConsts.BOOL);
+            builder.append(GlobalConsts.QUOTE);
+            builder.append(GlobalConsts.COLON);
+            builder.append(GlobalConsts.LEFT_BRACE);
+            builder.append(GlobalConsts.QUOTE);
+            builder.append(GlobalConsts.MUSTNOT);
+            builder.append(GlobalConsts.QUOTE);
+            builder.append(GlobalConsts.COLON);
+            builder.append(GlobalConsts.LEFT_SQUARE);
+
+            AtomicInteger i = new AtomicInteger();
+            list.forEach((x) -> {
+                builder.append(GlobalConsts.LEFT_BRACE);
+                builder.append(GlobalConsts.QUOTE);
+                builder.append(GlobalConsts.EXISTS);
+                builder.append(GlobalConsts.QUOTE);
+                builder.append(GlobalConsts.COLON);
+                builder.append(GlobalConsts.LEFT_BRACE);
+                builder.append(GlobalConsts.QUOTE);
+                builder.append(GlobalConsts.FIELD);
+                builder.append(GlobalConsts.QUOTE);
+                builder.append(GlobalConsts.COLON);
+
+                if (x.getValues().size() > 0) {
+                    AtomicInteger i1 = new AtomicInteger();
+                    builder.append(GlobalConsts.LEFT_SQUARE);
+                    x.getValues().forEach(y -> {
+                        builder.append(GlobalConsts.QUOTE);
+                        builder.append(y);
+                        builder.append(GlobalConsts.QUOTE);
+                        i1.getAndIncrement();
+                        if (i1.get() != x.getValues().size()) {
+                            builder.append(GlobalConsts.COMMA);
+                        }
+                    });
+                    builder.append(GlobalConsts.RIGHT_SQUARE);
+                }
+
+                builder.append(GlobalConsts.RIGHT_BRACE);
+                builder.append(GlobalConsts.RIGHT_BRACE);
+                i.getAndIncrement();
+                if (i.get() != list.size()) {
+                    builder.append(GlobalConsts.COMMA);
+                }
+            });
+
+            builder.append(GlobalConsts.RIGHT_SQUARE);
+            builder.append(GlobalConsts.RIGHT_BRACE);
+            builder.append(GlobalConsts.RIGHT_BRACE);
+
+        }
+
+        return builder.toString();
+    }
+
 
     public static String getRangeSQL(List<Fields> list) {
 

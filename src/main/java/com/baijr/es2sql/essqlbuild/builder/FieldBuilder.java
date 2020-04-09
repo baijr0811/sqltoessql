@@ -24,7 +24,9 @@ public class FieldBuilder extends BaseBuilder {
     private final List<Fields> term = new ArrayList<>();
     private final List<Fields> terms = new ArrayList<>();
     private final List<Fields> exists = new ArrayList<>();
+    private final List<Fields> nulls = new ArrayList<>();
     private final List<Fields> range = new ArrayList<>();
+    private final List<Fields> notTerm = new ArrayList<>();
 
     private final List<BoolBuilder> childBools = new ArrayList<>();
 
@@ -37,6 +39,11 @@ public class FieldBuilder extends BaseBuilder {
         return this;
     }
 
+    public FieldBuilder NotEqual(String field, String value) {
+        notTerm.add(new Fields(field, value));
+        return this;
+    }
+
     public FieldBuilder In(String field, String... value) {
         terms.add(new Fields(field, Arrays.asList(value)));
         return this;
@@ -45,7 +52,11 @@ public class FieldBuilder extends BaseBuilder {
     public FieldBuilder NotNULL(String... fields) {
         exists.add(new Fields(Arrays.asList(fields)));
         return this;
+    }
 
+    public FieldBuilder NULL(String... fields) {
+        nulls.add(new Fields(Arrays.asList(fields)));
+        return this;
     }
 
     public FieldBuilder Then(String field, String value) {
@@ -78,8 +89,10 @@ public class FieldBuilder extends BaseBuilder {
     public String ESSQL() {
         List<String> sqls = new ArrayList<>();
         String termStr = FieldString.getTermSQL(term);
+        String notTermStr = FieldString.getNotTermSQL(notTerm);
         String termsStr = FieldString.getTermsSQL(terms);
         String existsStr = FieldString.getExistsSQL(exists);
+        String nullStr = FieldString.getNullSQL(nulls);
         String rangeStr = FieldString.getRangeSQL(range);
         String childStr = FieldString.getChildBoolSql(childBools);
         if (!"".equals(termStr)) {
@@ -96,6 +109,12 @@ public class FieldBuilder extends BaseBuilder {
         }
         if (!"".equals(childStr)) {
             sqls.add(childStr);
+        }
+        if (!"".equals(nullStr)) {
+            sqls.add(nullStr);
+        }
+        if (!"".equals(notTermStr)) {
+            sqls.add(notTermStr);
         }
         return String.join(",", sqls);
     }
